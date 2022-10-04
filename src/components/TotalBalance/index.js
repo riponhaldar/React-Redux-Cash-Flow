@@ -7,8 +7,8 @@ const TotalBalance = () => {
   const [show, setShow] = useState(true);
 
   const { incomeItems } = useSelector((state) => state.income);
-  console.log('IncomeItems', incomeItems);
 
+  const { expensesList } = useSelector((state) => state.income);
   return (
     <div className='mt-12'>
       <div
@@ -52,13 +52,16 @@ const TotalBalance = () => {
                       Total Balance
                     </td>
                     <td className='text-xs text-gray-900  text-center py-1 '>
-                      {incomeItems.reduce((e, i) => e + i.amount, 0)}
+                      {Number(incomeItems.reduce((e, i) => e + i.amount, 0))}
                     </td>
                     <td className='text-xs text-red-600  text-center py-1 '>
-                      - ₹2,000.00
+                      - {expensesList.reduce((e, i) => e + i.amount, 0)}
                     </td>
                     <td className='text-xs text-gray-800  text-center py-1 '>
-                      0.00
+                      {parseFloat(
+                        Number(incomeItems.reduce((e, i) => e + i.amount, 0)) -
+                          Number(expensesList.reduce((e, i) => e + i.amount, 0))
+                      ).toFixed(2)}
                     </td>
                   </tr>
                 </tbody>

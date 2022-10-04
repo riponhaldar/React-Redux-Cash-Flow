@@ -1,34 +1,44 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  incomeItems: localStorage.getItem("income")
-    ? JSON.parse(localStorage.getItem("income"))
+  incomeItems: localStorage.getItem('income')
+    ? JSON.parse(localStorage.getItem('income'))
     : [],
-    expensesList: localStorage.getItem("expense")
-    ? JSON.parse(localStorage.getItem("expense"))
+  expensesList: localStorage.getItem('expense')
+    ? JSON.parse(localStorage.getItem('expense'))
     : [],
+  incomeShow: false,
+  expensesShow: false,
 };
 
-
 const IncomeSlice = createSlice({
-  name: "Income",
+  name: 'Income',
   initialState,
   reducers: {
     addIncome: (state, action) => {
       const allIncome = { ...action.payload };
       state.incomeItems.push(allIncome);
-      localStorage.setItem("income", JSON.stringify(state.incomeItems));
+      localStorage.setItem('income', JSON.stringify(state.incomeItems));
       return state;
     },
     addExpenses: (state, action) => {
       const allExpense = { ...action.payload };
       state.expensesList.push(allExpense);
-      localStorage.setItem("expense", JSON.stringify(state.expensesList));
+      localStorage.setItem('expense', JSON.stringify(state.expensesList));
+      return state;
+    },
+    toggleIncome: (state, action) => {
+      state.incomeShow = action.payload;
+      return state;
+    },
+    toggleEpenses: (state, action) => {
+      state.expensesShow = action.payload;
       return state;
     },
   },
 });
 
-export const { addIncome ,addExpenses} = IncomeSlice.actions;
+export const { addIncome, addExpenses, toggleIncome, toggleEpenses } =
+  IncomeSlice.actions;
 
 export default IncomeSlice.reducer;

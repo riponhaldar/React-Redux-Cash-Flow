@@ -12,10 +12,8 @@ const AddIncome = ({ open, setOpen }) => {
   //     setOpen(false);
   //   }, 2000);
   // };
-  const handleCancel = () => {
-    setOpen(false);
-  };
-  const inComeSubmit = (values) => {
+
+  const inComeSubmit = (values, { resetForm }) => {
     setOpen(false);
     const newValues = {
       name: values.name,
@@ -24,6 +22,7 @@ const AddIncome = ({ open, setOpen }) => {
       date: values.date,
     };
     dispatch(addIncome(newValues));
+    resetForm();
   };
 
   return (
@@ -69,10 +68,10 @@ const AddIncome = ({ open, setOpen }) => {
                 </div>
                 <div className=''>
                   <label className='form-lable font-bold capitalize'>
-                  amount <span className='text-red-400'>*</span>
+                    amount <span className='text-red-400'>*</span>
                   </label>
                   <input
-                    className={`block mt-1 border w-full px-2 py-1 rounded outline-none  ${
+                    className={`block mt-1 border w-full px-2 py-1  rounded outline-none  ${
                       touched.amount && !errors.amount && 'border-green-500'
                     }`}
                     type='text'
@@ -96,7 +95,7 @@ const AddIncome = ({ open, setOpen }) => {
                       onBlur={handleBlur}
                       error={errors.type}
                       onChange={handleChange}
-                      className={`block appearance-none mt-1 w-full py-1 rounded bg-white border ${
+                      className={`block appearance-none mt-1 w-full py-1 px-2 rounded bg-white border ${
                         touched.type && !errors.type && 'border-green-600'
                       }`}
                     >
