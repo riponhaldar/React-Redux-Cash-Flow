@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import { initialValues, validationSchama } from '../models/AddIncomeModel';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addIncome } from '../../Redux/reducer/AddIncomSlice';
+import { addIncome } from '../../Redux/reducer/AddCashSlice';
 const AddIncome = ({ open, setOpen }) => {
   const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ const AddIncome = ({ open, setOpen }) => {
     setOpen(false);
     const newValues = {
       name: values.name,
-      ammount: Number(values.ammount),
+      amount: Number(values.amount),
       type: values.type,
       date: values.date,
     };
@@ -69,27 +69,27 @@ const AddIncome = ({ open, setOpen }) => {
                 </div>
                 <div className=''>
                   <label className='form-lable font-bold capitalize'>
-                    ammount <span className='text-red-400'>*</span>
+                  amount <span className='text-red-400'>*</span>
                   </label>
                   <input
                     className={`block mt-1 border w-full px-2 py-1 rounded outline-none  ${
-                      touched.ammount && !errors.ammount && 'border-green-500'
+                      touched.amount && !errors.amount && 'border-green-500'
                     }`}
                     type='text'
-                    name='ammount'
-                    value={values.ammount}
+                    name='amount'
+                    value={values.amount}
                     onBlur={handleBlur}
-                    error={errors.ammount}
+                    error={errors.amount}
                     onChange={handleChange}
-                    placeholder='$***.00'
+                    placeholder='₹ ***.**'
                   />
-                  <p className='text-red-400 text-xs'>{errors.ammount}</p>
+                  <p className='text-red-400 text-xs'>{errors.amount}</p>
                 </div>
                 <div className=''>
                   <label className='form-lable font-bold capitalize'>
                     type <span className='text-red-400'>*</span>
                   </label>
-                  <div class='relative'>
+                  <div className='relative'>
                     <select
                       name='type'
                       value={values.type}

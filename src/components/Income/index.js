@@ -49,7 +49,7 @@ const Income = () => {
                         scope='col'
                         className=' py-2 text-sm text-end text-gray-900 '
                       >
-                        Ammount
+                        Amount
                       </th>
                       <th
                         scope='col'
@@ -76,7 +76,7 @@ const Income = () => {
                             {item.name}
                           </td>
                           <td className='text-xs text-blue-500  text-end py-1 '>
-                            {item.ammount}
+                            {item.amount}
                           </td>
                           <td className='text-xs text-gray-900  text-center py-1 '>
                             <div

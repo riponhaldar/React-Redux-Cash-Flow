@@ -19,7 +19,7 @@ const TotalBalance = () => {
         <h1 className='font-bold ring-indigo-800 '>Total Balence </h1>
       </div>
       {show && (
-        <div className='flex flex-col md:ml-8 sm:w-1/2 w-full'>
+        <div className='flex flex-col md:ml-8 sm:max-w-screen-md w-full'>
           <div className='overflow-x-auto'>
             <div className=' min-w-full sm:px-6 lg:px-2'>
               <table className='min-w-full'>
@@ -48,11 +48,11 @@ const TotalBalance = () => {
                 </thead>
                 <tbody>
                   <tr className='bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100'>
-                    <td className='py-2 text-sm font-medium text-gray-900'>
-                      Total Blence
+                    <td className='py-2 text-sm font-bold  text-gray-900'>
+                      Total Balance
                     </td>
                     <td className='text-xs text-gray-900  text-center py-1 '>
-                      {incomeItems.reduce((e, i) => e + i.ammount, 0)}
+                      {incomeItems.reduce((e, i) => e + i.amount, 0)}
                     </td>
                     <td className='text-xs text-red-600  text-center py-1 '>
                       - ₹2,000.00
