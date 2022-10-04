@@ -3,26 +3,31 @@ import { MdOutlineArrowDropDown, MdOutlineArrowRight } from 'react-icons/md';
 import { Button, Modal } from 'antd';
 import AddIncome from './AddIncome';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { toggleIncome } from '../../Redux/reducer/AddCashSlice';
 const Income = () => {
+  const dispath = useDispatch();
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const { incomeItems } = useSelector((state) => state.income);
+  const { incomeItems, incomeShow } = useSelector((state) => state.income);
 
   const showModal = () => {
     setOpen(true);
   };
 
+  const handelShow = () => {
+    dispath(toggleIncome(!incomeShow));
+  };
   return (
     <div>
       <div className='mt-16'>
         <div className='flex items-center justify-between sm:max-w-screen-lg w-full mb-4'>
-          <div
-            onClick={() => setShow(!show)}
-            className='flex items-center cursor-pointer'
-          >
-            {show ? <MdOutlineArrowDropDown /> : <MdOutlineArrowRight />}
+          <div onClick={handelShow} className='flex  cursor-pointer'>
+            {incomeShow ? (
+              <MdOutlineArrowDropDown className='text-xl' />
+            ) : (
+              <MdOutlineArrowRight className='text-xl' />
+            )}
             <h1 className='font-bold ring-indigo-800 '>Income </h1>
           </div>
           <div className='flex space-x-2 justify-center'>
@@ -35,7 +40,7 @@ const Income = () => {
             </button>
           </div>
         </div>
-        {show && (
+        {incomeShow && (
           <div className='flex flex-col md:ml-8 sm:max-w-screen-lg w-full'>
             <div className='overflow-x-auto'>
               <div className=' min-w-full sm:px-6 lg:px-2'>
