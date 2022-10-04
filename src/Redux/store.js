@@ -13,7 +13,7 @@ import storage from 'reduxjs-toolkit-persist/lib/storage';
 import persistStore from 'reduxjs-toolkit-persist/es/persistStore';
 
 // import reducers
-
+import IncomeReducer from './reducer/AddIncomSlice';
 // import { REDUX_PERSIST_KEY } from '../config';
 const persistConfig = {
   key: 'cash_flow()',
@@ -22,7 +22,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
-    // cart: CartReducer,
+    income: IncomeReducer,
     //  productsList: productListReducer,
   })
 );

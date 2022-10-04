@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { MdOutlineArrowDropDown, MdOutlineArrowRight } from 'react-icons/md';
 import { Button, Modal } from 'antd';
 import AddIncome from './AddIncome';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Income = () => {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const { incomeItems } = useSelector((state) => state.income);
 
   const showModal = () => {
     setOpen(true);
@@ -39,10 +42,12 @@ const Income = () => {
                 <table className='min-w-full'>
                   <thead className='bg-white border-b'>
                     <tr>
-                      <th>Name</th>
+                      <th className=' py-2 text-sm text-start text-gray-900 '>
+                        Name
+                      </th>
                       <th
                         scope='col'
-                        className=' py-2 text-sm text-center text-gray-900 '
+                        className=' py-2 text-sm text-end text-gray-900 '
                       >
                         Ammount
                       </th>
@@ -61,25 +66,31 @@ const Income = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className='bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100'>
-                      <td className='text-xs text-gray-800  text-center py-2'>
-                        Salary
-                      </td>
-                      <td className='text-xs text-blue-500  text-center py-1 '>
-                        ₹14,000.00
-                      </td>
-                      <td className='text-xs text-gray-900  text-center py-1 '>
-                        <div
-                          className=' rounded py-1 px-4 inline-block bg-blue-100 text-blue-700'
-                          role='alert'
+                    {incomeItems &&
+                      incomeItems.map((item, index) => (
+                        <tr
+                          key={index}
+                          className='bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100'
                         >
-                          Fixed Income
-                        </div>
-                      </td>
-                      <td className='text-xs text-gray-900  text-center py-1 '>
-                        Septembae 1,2021
-                      </td>
-                    </tr>
+                          <td className='text-xs text-gray-800  text-start py-2'>
+                            {item.name}
+                          </td>
+                          <td className='text-xs text-blue-500  text-end py-1 '>
+                            {item.ammount}
+                          </td>
+                          <td className='text-xs text-gray-900  text-center py-1 '>
+                            <div
+                              className=' rounded py-1 px-4 inline-block bg-blue-100 text-blue-700'
+                              role='alert'
+                            >
+                              {item.type}
+                            </div>
+                          </td>
+                          <td className='text-xs text-gray-900  text-center py-1 '>
+                            {item.date}
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
