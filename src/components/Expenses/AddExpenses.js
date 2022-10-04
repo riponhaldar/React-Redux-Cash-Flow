@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Modal } from 'antd';
-import { initialValues, validationSchama } from '../models/AddExpensesModel.js';
-import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { addIncome } from '../../Redux/reducer/AddIncomSlice';
+import React, { useState } from "react";
+import { Modal } from "antd";
+import { initialValues, validationSchama } from "../models/AddExpensesModel.js";
+import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { addExpenses } from "../../Redux/reducer/AddCashSlice";
 
 const AddExpenses = ({ open, setOpen }) => {
   const dispatch = useDispatch();
@@ -16,29 +16,25 @@ const AddExpenses = ({ open, setOpen }) => {
   const handleCancel = () => {
     setOpen(false);
   };
-  const inComeSubmit = (values) => {
+  const AddExpensesSubmit = (values) => {
     setOpen(false);
-    const newValues = {
-      name: values.name,
-      ammount: Number(values.ammount),
-      type: values.type,
-      date: values.date,
-    };
-    dispatch(addIncome(newValues));
+
+    console.log("values", values);
+    dispatch(addExpenses(values));
   };
 
   return (
     <>
       <Modal
         open={open}
-        title='Income'
+        title="Income"
         footer={null}
         onCancel={() => setOpen(!open)}
       >
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchama}
-          onSubmit={inComeSubmit}
+          onSubmit={AddExpensesSubmit}
         >
           {({
             values,
@@ -48,95 +44,129 @@ const AddExpenses = ({ open, setOpen }) => {
             handleBlur,
             handleSubmit,
           }) => (
-            <form className=' ' onSubmit={handleSubmit}>
-              <div className='grid sm:grid-cols-2 gap-3'>
-                <div className=''>
-                  <label className='form-lable font-bold capitalize'>
-                    name <span className='text-red-400'>*</span>
+            <form className=" " onSubmit={handleSubmit}>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="form-group">
+                  <label className="form-label font-bold capitalize">
+                    name <span className="text-red-400">*</span>
                   </label>
                   <input
                     className={`block mt-1 border w-full px-2 py-1 rounded outline-none  ${
-                      touched.name && !errors.name && 'border-green-500'
+                      touched.name && !errors.name && "border-green-500"
                     }`}
-                    type='text'
-                    name='name'
+                    type="text"
+                    name="name"
                     value={values.name}
                     onBlur={handleBlur}
                     error={errors.name}
                     onChange={handleChange}
-                    placeholder='salary**'
+                    placeholder="salary**"
                   />
-                  <p className='text-red-400 text-xs'>{errors.name}</p>
+                  <p className="text-red-400 text-xs">{errors.name}</p>
                 </div>
-                <div className=''>
-                  <label className='form-lable font-bold capitalize'>
-                    ammount <span className='text-red-400'>*</span>
+
+                <div className="form-group">
+                  <label className="form-label font-bold capitalize">
+                    amount <span className="text-red-400">*</span>
                   </label>
                   <input
                     className={`block mt-1 border w-full px-2 py-1 rounded outline-none  ${
-                      touched.ammount && !errors.ammount && 'border-green-500'
+                      touched.amount && !errors.amount && "border-green-500"
                     }`}
-                    type='text'
-                    name='ammount'
-                    value={values.ammount}
+                    type="text"
+                    name="amount"
+                    value={values.amount}
                     onBlur={handleBlur}
-                    error={errors.ammount}
+                    error={errors.amount}
                     onChange={handleChange}
-                    placeholder='$***.00'
+                    placeholder="$***.00"
                   />
-                  <p className='text-red-400 text-xs'>{errors.ammount}</p>
+                  <p className="text-red-400 text-xs">{errors.amount}</p>
                 </div>
-                <div className=''>
-                  <label className='form-lable font-bold capitalize'>
-                    type <span className='text-red-400'>*</span>
+                <div className="form-group">
+                  <label className="form-label font-bold capitalize">
+                    budget <span className="text-red-400"></span>
                   </label>
-                  <div class='relative'>
+                  <input
+                    className={`block mt-1 border w-full px-2 py-1 rounded outline-none  ${
+                      touched.budget && !errors.budget && "border-green-500"
+                    }`}
+                    type="text"
+                    name="budget"
+                    value={values.budget}
+                    onBlur={handleBlur}
+                    error={errors.budget}
+                    onChange={handleChange}
+                    placeholder="$***.00"
+                  />
+                  <p className="text-red-400 text-xs">{errors.budget}</p>
+                </div>
+                <div className="form-group">
+                  <label className="form-label font-bold capitalize">
+                    month <span className="text-red-400">*</span>
+                  </label>
+                  <div className="relative">
                     <select
-                      name='type'
+                      name="month"
+                      value={values.month}
+                      onBlur={handleBlur}
+                      error={errors.month}
+                      onChange={handleChange}
+                      className={`block appearance-none mt-1 w-full py-1 rounded bg-white border ${
+                        touched.month && !errors.month && "border-green-600"
+                      }`}
+                    >
+                      <option>JUN</option>
+                      <option>OCT</option>
+                    </select>
+                    <p className="text-red-400 text-xs">{errors.month}</p>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label className="form-label font-bold capitalize">
+                    type <span className="text-red-400">*</span>
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="type"
                       value={values.type}
                       onBlur={handleBlur}
                       error={errors.type}
                       onChange={handleChange}
                       className={`block appearance-none mt-1 w-full py-1 rounded bg-white border ${
-                        touched.type && !errors.type && 'border-green-600'
+                        touched.type && !errors.type && "border-green-600"
                       }`}
                     >
-                      <option>Fixed Income</option>
-                      <option>Extra Income</option>
+                      <option value={0}>Flexible Expense</option>
+                      <option value={1}>Fixed Expense</option>
                     </select>
-                    <p className='text-red-400 text-xs'>{errors.type}</p>
+                    <p className="text-red-400 text-xs">{errors.type}</p>
                   </div>
                 </div>
-                <div className=''>
-                  <label className='form-lable font-bold capitalize'>
-                    date <span className='text-red-400'>*</span>
+                <div className="form-group">
+                  <label className="form-label font-bold capitalize">
+                    date <span className="text-red-400">*</span>
                   </label>
                   <input
                     className={`block mt-1 border w-full px-2 py-1 rounded outline-none  ${
-                      touched.date && !errors.date && 'border-green-500'
+                      touched.date && !errors.date && "border-green-500"
                     }`}
-                    type='date'
-                    name='date'
+                    type="date"
+                    name="date"
                     value={values.date}
                     onBlur={handleBlur}
                     error={errors.date}
                     onChange={handleChange}
-                    placeholder='**/**/2***'
+                    placeholder="**/**/2***"
                   />
-                  <p className='text-red-400 text-xs'>{errors.date}</p>
+                  <p className="text-red-400 text-xs">{errors.date}</p>
                 </div>
               </div>
 
-              <div className='flex justify-end'>
-                {/* <button
-                  onClick={handleCancel}
-                  className='hover:shadow-form  mt-4 rounded bg-gray-400 py-2 px-6 text-center text-base font-semibold text-white outline-none mr-3'
-                >
-                  Cancel
-                </button> */}
+              <div className="flex justify-end">
                 <button
-                  type='submit'
-                  className='hover:shadow-form  w-full mt-4 rounded bg-[#6A64F1] py-2 px-6 text-center text-base font-semibold text-white outline-none'
+                  type="submit"
+                  className="hover:shadow-form  w-full mt-4 rounded bg-purple-700 py-2 px-6 text-center text-base font-semibold text-white outline-none"
                 >
                   Submit
                 </button>

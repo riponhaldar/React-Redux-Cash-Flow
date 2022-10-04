@@ -3,19 +3,19 @@ import * as yup from 'yup';
 const initialValues = {
   name: '',
   budget: '',
-  Month: 'Jan',
-  ammount: '',
-  type: 'Flexible Expense',
+  month: 'Jan',
+  amount: '',
+  type: '0',
   date: '',
 };
 
 const validationSchama = yup.object().shape({
-  name: yup.string().required('Name is requierd'),
-  ammount: yup.string().required('Ammount is requierd'),
-  budget: yup.string().optional('budget is requierd'),
-  Month: yup.string().required('Months is requierd'),
-  type: yup.string().required('Type is requierd'),
-  date: yup.string().required('Date is requierd'),
+  name: yup.string().required('Name is required'),
+  amount: yup.string().matches(/^\d+$/, 'Should have digits only').required('Amount is required'),
+  budget: yup.string().matches(/^\d+$/, 'Should have digits only').optional('budget is required'),
+  month: yup.string().required('Month is required'),
+  type: yup.string().required('Type is required'),
+  date: yup.string().required('Date is required'),
 });
 
 export { initialValues, validationSchama };
