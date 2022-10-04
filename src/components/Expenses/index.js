@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { MdOutlineArrowDropDown, MdOutlineArrowRight } from 'react-icons/md';
+import AddExpenses from './AddExpenses';
 
 const Expenses = () => {
   const [show, setShow] = useState(false);
-
+  const [open, setOpen] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
   return (
     <div>
       <div className='mt-16'>
@@ -17,6 +21,7 @@ const Expenses = () => {
           </div>
           <div className='flex space-x-2 justify-center'>
             <button
+              onClick={showModal}
               type='button'
               className='inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
             >
@@ -92,6 +97,7 @@ const Expenses = () => {
           </div>
         )}
       </div>
+      <AddExpenses open={open} setOpen={setOpen} />
     </div>
   );
 };

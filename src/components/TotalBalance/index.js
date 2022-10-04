@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import { Empty } from 'antd';
+import React, { useEffect, useState } from 'react';
 
 import { MdOutlineArrowRight, MdOutlineArrowDropDown } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 const TotalBalance = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
+
+  const { incomeItems } = useSelector((state) => state.income);
+  console.log('IncomeItems', incomeItems);
 
   return (
     <div className='mt-12'>
@@ -47,7 +52,7 @@ const TotalBalance = () => {
                       Total Blence
                     </td>
                     <td className='text-xs text-gray-900  text-center py-1 '>
-                      ₹2,000.00
+                      {incomeItems.reduce((e, i) => e + i.ammount, 0)}
                     </td>
                     <td className='text-xs text-red-600  text-center py-1 '>
                       - ₹2,000.00

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
-import { initialValues, validationSchama } from '../models/AddIncomeModel';
+import { initialValues, validationSchama } from '../models/AddExpensesModel.js';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { addIncome } from '../../Redux/reducer/AddIncomSlice';
-const AddIncome = ({ open, setOpen }) => {
+
+const AddExpenses = ({ open, setOpen }) => {
   const dispatch = useDispatch();
 
   // const handleOk = () => {
@@ -156,4 +157,4 @@ const AddIncome = ({ open, setOpen }) => {
   );
 };
 
-export default AddIncome;
+export default AddExpenses;
