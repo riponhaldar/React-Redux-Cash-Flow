@@ -14,7 +14,7 @@ import persistStore from 'reduxjs-toolkit-persist/es/persistStore';
 
 // import reducers
 
-import { REDUX_PERSIST_KEY } from '../config';
+// import { REDUX_PERSIST_KEY } from '../config';
 const persistConfig = {
   key: 'cash_flow()',
   storage,
@@ -22,7 +22,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
-    //  cart: CartReducer,
+    // cart: CartReducer,
     //  productsList: productListReducer,
   })
 );

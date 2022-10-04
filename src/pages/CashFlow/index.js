@@ -1,11 +1,11 @@
 import React from 'react';
 import Expenses from '../../components/Expenses';
-import Income from '../../components/Expenses/Income';
+import Income from '../../components/Income';
 import TotalBalance from '../../components/TotalBalance';
 
 const CashFlow = () => {
   return (
-    <div className='container px-2 m-auto'>
+    <div className='md:max-w-screen-xl   px-2 m-auto'>
       {/* total balance ********** */}
       <TotalBalance />
       {/* Income ********** */}

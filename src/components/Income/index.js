@@ -1,41 +1,18 @@
 import React, { useState } from 'react';
 import { MdOutlineArrowDropDown, MdOutlineArrowRight } from 'react-icons/md';
 import { Button, Modal } from 'antd';
+import AddIncome from './AddIncome';
 
 const Income = () => {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState('Content of the modal');
 
   const showModal = () => {
     setOpen(true);
   };
 
-  const handleOk = () => {
-    setModalText('The modal will be closed after two seconds');
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
-    setOpen(false);
-  };
   return (
     <div>
-      <Modal
-        title='Title'
-        open={open}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-      >
-        <p>{modalText}</p>
-      </Modal>
       <div className='mt-16'>
         <div className='flex items-center justify-between sm:max-w-screen-lg w-full mb-4'>
           <div
@@ -45,11 +22,11 @@ const Income = () => {
             {show ? <MdOutlineArrowDropDown /> : <MdOutlineArrowRight />}
             <h1 className='font-bold ring-indigo-800 '>Income </h1>
           </div>
-          <div class='flex space-x-2 justify-center'>
+          <div className='flex space-x-2 justify-center'>
             <button
               onClick={showModal}
               type='button'
-              class='inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
+              className='inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
             >
               Add
             </button>
@@ -93,7 +70,7 @@ const Income = () => {
                       </td>
                       <td className='text-xs text-gray-900  text-center py-1 '>
                         <div
-                          class=' rounded py-1 px-4 inline-block bg-blue-100 text-blue-700'
+                          className=' rounded py-1 px-4 inline-block bg-blue-100 text-blue-700'
                           role='alert'
                         >
                           Fixed Income
@@ -110,6 +87,8 @@ const Income = () => {
           </div>
         )}
       </div>
+
+      <AddIncome open={open} setOpen={setOpen} />
     </div>
   );
 };
