@@ -98,7 +98,7 @@ const Expenses = () => {
                             ₹{item.budget}
                           </td>
                           <td className='text-xs text-blue-600  text-end py-1 '>
-                            -₹{item.amount}
+                            ₹{item.amount}
                           </td>
 
                           <td className='text-xs text-gray-900  text-end py-1 '>
@@ -118,7 +118,7 @@ const Expenses = () => {
                             </span>
                           </td>
                           <td className='text-xs text-gray-900  text-center py-1 '>
-                            {item.inOverBudget.toLowerCase() === 'not' ? (
+                            {item.inOverBudget?.toLowerCase() === 'not' ? (
                               <div className='bg-red-50 text-red-600 px-6 py-1 inline-block rounded'>
                                 Extra Over Budget
                               </div>
