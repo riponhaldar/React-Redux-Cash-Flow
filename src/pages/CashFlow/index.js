@@ -5,7 +5,7 @@ import TotalBalance from '../../components/TotalBalance';
 
 const CashFlow = () => {
   return (
-    <div className='md:max-w-screen-lg   px-2 m-auto'>
+    <div className='md:max-w-screen-lg  sm:px-2 px-4 m-auto'>
       {/* total balance ********** */}
       <TotalBalance />
       {/* Income ********** */}

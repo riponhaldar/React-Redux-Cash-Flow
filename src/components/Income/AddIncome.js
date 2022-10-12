@@ -49,7 +49,7 @@ const AddIncome = ({ open, setOpen }) => {
             <form className=' ' onSubmit={handleSubmit}>
               <div className='grid sm:grid-cols-2 gap-3'>
                 <div className=''>
-                  <label className='form-lable font-bold capitalize'>
+                  <label className='form-label font-bold capitalize'>
                     name <span className='text-red-400'>*</span>
                   </label>
                   <input
@@ -62,7 +62,7 @@ const AddIncome = ({ open, setOpen }) => {
                     onBlur={handleBlur}
                     error={errors.name}
                     onChange={handleChange}
-                    placeholder='salary**'
+                    placeholder='name**'
                   />
                   <p className='text-red-400 text-xs'>{errors.name}</p>
                 </div>
